@@ -6,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../homeScreen/home_screen_view.dart';
 
 class CustomAppBarView extends GetView<CustomAppBarController> {
