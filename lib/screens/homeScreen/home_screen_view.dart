@@ -84,7 +84,6 @@ class HomeScreenView extends GetView<HomeScreenController> {
             SizedBox(height: 10,),
             Container(
               height: 358,
-              color: Colors.amber,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 5),
                 child: ListView.builder(
@@ -238,7 +237,6 @@ class HomeScreenView extends GetView<HomeScreenController> {
                 ),
               ),
             ),
-            SizedBox(height: 30,),
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
