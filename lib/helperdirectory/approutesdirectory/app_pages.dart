@@ -1,3 +1,4 @@
+import 'package:coffee_shop/screens/orderDetailScreen/orderdetail_screen_view.dart';
 import 'package:get/get.dart';
 import 'package:coffee_shop/screens/splashScreen/splash_screen_view.dart';
 import '../../screens/customBottomBar/custom_bottom_bar_binding.dart';
@@ -6,6 +7,7 @@ import '../../screens/favoriteScreen/favorite_screen_binding.dart';
 import '../../screens/favoriteScreen/favorite_screen_view.dart';
 import '../../screens/homeScreen/home_screen_binding.dart';
 import '../../screens/homeScreen/home_screen_view.dart';
+import '../../screens/orderDetailScreen/orderdetail_screen_binding.dart';
 import '../../screens/orderScreen/order_screen_binding.dart';
 import '../../screens/orderScreen/order_screen_view.dart';
 import '../../screens/profileScreen/profile_screen_binding.dart';
@@ -39,6 +41,11 @@ class AppPages {
       binding: OrderScreenBinding(),
     ),
     GetPage(
+      name: Routes.ORDERDETAIL_SCREEN,
+      page: () => OrderDetailScreenView(),
+      binding: OrderdetailScreenBinding(),
+    ),
+    GetPage(
       name: Routes.FAVORITE_SCREEN,
       page: () => FavoriteScreenView(),
       binding: FavoriteScreenBindng(),
@@ -57,6 +64,7 @@ abstract class Routes {
   static const BOTTOM_BAR = '/bottombar';
   static const HOME_SCREEN = '/home_screen';
   static const ORDER_SCREEN = '/order_screen';
+  static const ORDERDETAIL_SCREEN = '/orderdetail_screen';
   static const FAVORITE_SCREEN = '/favorite_screen';
   static const PROFILE_SCREEN = '/profile_screen';
 }
