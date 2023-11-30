@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../helperdirectory/approutesdirectory/app_pages.dart';
+import '../orderDetailScreen/orderdetail_screen_controller.dart';
 
 class HomeScreenView extends GetView<HomeScreenController> {
   HomeScreenView({Key? key}) : super(key: key);
 
   @override
   var controller = Get.put(HomeScreenController());
+  var ordercontroller = Get.put(OrderDetailScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -283,6 +285,8 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                   GestureDetector(
                                     onTap: () {
                                       Get.toNamed(Routes.ORDERDETAIL_SCREEN, arguments: controller.coffeeShop[index]);
+                                      ordercontroller.productlike = controller.isLikedList[index].obs;
+                                      print("The values of the coffeshop index is ${controller.coffeeShop[index]}");
                                     },
                                   ),
                                 ],

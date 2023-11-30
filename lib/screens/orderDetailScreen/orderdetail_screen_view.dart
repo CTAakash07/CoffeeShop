@@ -1,14 +1,14 @@
 import 'package:coffee_shop/screens/orderDetailScreen/orderdetail_screen_controller.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
-class OrderDetailScreenView extends GetView<OrderDetailScreenController>{
+class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
   OrderDetailScreenView({Key? key}) : super(key: key);
 
   @override
   var controller = Get.put(OrderDetailScreenController());
-
+  var coffeeShopDetail = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +24,140 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController>{
           // mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
                     height: MediaQuery.of(context).size.height / 2,
                     width: MediaQuery.of(context).size.width / 1.75,
-                    color: Colors.blue,
-                    // child: ,
+                    // color: Colors.blue,
+                    child: ListView(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 30, left: 10, right: 10),
+                          height: 75,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                                Text(
+                                 coffeeShopDetail["coffeename"],
+                                  maxLines: 2,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 22,
+                                    fontFamily: "Roboto",
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 5.0),
+                                child: SizedBox(
+                                  height: 40,
+                                  width: 40,
+                                  child: InkWell(
+                                    onTap: () {
+                                      controller.productlike.toggle();
+                                    },
+                                    child: Obx(
+                                          () => Container(
+                                          height: 40,
+                                          width: 40,
+                                          decoration:
+                                          BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.circular(30),
+                                          ),
+                                          child: Icon(
+                                            Icons.favorite,
+                                            color: controller.productlike == true ? Colors.red : Colors.grey,
+                                          )
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(top: 15, right: 10, left: 10),
+                          height: 130,
+                          child: Text(
+                              coffeeShopDetail["description"],
+                            maxLines: 5,
+                            style: const TextStyle(
+                              fontFamily: "Roboto",
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        Container(
+                            margin: const EdgeInsets.only(top: 1,left: 10,right: 5,bottom: 15),
+                          height: 100,
+                          color: Colors.blue,
+                          child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(left: 8),
+                                height: 65,
+                                width: 65,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: Colors.yellow
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "${coffeeShopDetail["rating"]}/5",
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                        color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(left: 8.0,top: 5,bottom: 5.0,right: 5.0),
+                                padding: const EdgeInsets.all(1),
+                                color: Colors.red,
+                                width: MediaQuery.of(context).size.width / 3.5,
+                                child: Column(
+                                  children: [
+                                      Container(
+                                        margin: const EdgeInsets.all(1),
+                                        color: Colors.green,
+                                        height: 52,
+                                        child: Stack(
+                                          children: [
+
+                                          ],
+                                        ),
+                                      ),
+                                    Container(
+                                      margin: const EdgeInsets.all(1),
+                                      color: Colors.green,
+                                      height: 32,
+                                      child: Center(
+                                        child: Text(
+                                            coffeeShopDetail["views"],
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 14,
+                                            color: Colors.white
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
             Container(
               height: MediaQuery.of(context).size.height / 2,
@@ -37,7 +166,6 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController>{
                 borderRadius: BorderRadius.circular(25),
                 color: Colors.white,
               ),
-              // padding: const EdgeInsets.only(left: 10, right: 10, top: 105, bottom: 10),
               child: Stack(
                 clipBehavior: Clip.none,
                 fit: StackFit.loose,
@@ -48,10 +176,12 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController>{
                     child: SizedBox(
                       height: 275,
                       width: MediaQuery.of(context).size.width / 2.75,
-                      child: Center(
-                          child: Container(
-                            color: Colors.red,
-                          )
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 1.0),
+                        child: Image.asset(
+                          coffeeShopDetail["images"],
+                          fit: BoxFit.fitHeight,
+                        ),
                       ),
                     ),
                   ),
@@ -61,7 +191,7 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController>{
                     child: Container(
                       height: 75,
                       width: MediaQuery.of(context).size.width / 1.95,
-                        child: Column(
+                        child: const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
@@ -89,12 +219,10 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController>{
                   ),
                 ],
               ),
-              // child:
             ),
           ],
         ),
       ),
     );
   }
-
 }

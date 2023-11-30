@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 class OrderDetailScreenController extends GetxController {
 
-  var coffeeShopList = Get.arguments;
+  RxBool productlike = false.obs;
 
   @override
   void onInit() {
