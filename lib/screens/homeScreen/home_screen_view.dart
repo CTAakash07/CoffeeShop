@@ -25,10 +25,10 @@ class HomeScreenView extends GetView<HomeScreenController> {
             const SizedBox(
               height: 50,
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   "Welcome, Nadia",
                   style: TextStyle(
                     fontFamily: 'Roboto',
@@ -37,19 +37,10 @@ class HomeScreenView extends GetView<HomeScreenController> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 25.0),
-                  child: Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Center(
-                      child: Image.asset(
-                        "assest/images/bottombar_person.png",
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                  padding: EdgeInsets.only(right: 25.0),
+                  child: CircleAvatar(
+                    radius: 25,
+                    backgroundImage: AssetImage("assest/images/modelimage3.jpg"), // Provide your image asset path
                   ),
                 ),
               ],
