@@ -275,7 +275,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      Get.toNamed(Routes.ORDERDETAIL_SCREEN, arguments: controller.coffeeShop[index]);
+                                      Get.toNamed(Routes.ORDER_DETAIL_SCREEN, arguments: controller.coffeeShop[index]);
                                       ordercontroller.productlike = controller.isLikedList[index].obs;
                                       print("The values of the coffeshop index is ${controller.coffeeShop[index]}");
                                     },

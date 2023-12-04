@@ -1,7 +1,10 @@
 import 'package:coffee_shop/screens/orderDetailScreen/orderdetail_screen_controller.dart';
+import 'package:coffee_shop/screens/placeOrderScreen/place_order_screen_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import '../../helperdirectory/approutesdirectory/app_pages.dart';
+import '../placeOrderScreen/place_order_screen_controller.dart';
 
 class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
   OrderDetailScreenView({Key? key}) : super(key: key);
@@ -9,6 +12,7 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
   @override
   var controller = Get.put(OrderDetailScreenController());
   var coffeeShopDetail = Get.arguments;
+  var placeordercontroller = Get.put(PlaceOrderScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -106,13 +110,13 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
                                   color: Color(0xff463d3c),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.only(left: 15,top: 17),
+                                  padding: const EdgeInsets.only(left: 15,top: 17),
                                   child: RichText (
                                     text: TextSpan(
                                       children: [
                                         TextSpan(
                                             text: "${coffeeShopDetail["rating"]}",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             textBaseline: TextBaseline.ideographic,
@@ -121,7 +125,7 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
                                         WidgetSpan(
                                           child: Transform.translate(
                                             offset: const Offset(0, 7),
-                                            child: Text(
+                                            child: const Text(
                                               '/5',
                                               style: TextStyle(
                                                 fontSize: 15,
@@ -133,7 +137,7 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
                                         ),
                                       ]
                                     ),
-                                  )
+                                  ),
                                 ),
                               ),
                               Container(
@@ -307,7 +311,7 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
                     ),
                   ),
                   Container(
-                    height: 1,
+                    height: 2,
                     margin: const EdgeInsets.only(
                       left: 15,
                       right: 15,
@@ -318,33 +322,125 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
                   ),
                   Container(
                     height: 230,
-                    margin: EdgeInsets.only(top: 1,right: 15,left: 15, bottom: 5),
+                    margin: const EdgeInsets.only(top: 1,right: 15,left: 15, bottom: 5),
                     child: ListView(
                       scrollDirection: Axis.vertical,
                       padding: EdgeInsets.zero,
                       children: [
-                        Container(
-                          color: Colors.blue,
-                          height: 150,
-                          margin: EdgeInsets.all(10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Ingredients",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: "Roboto",
-                                ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Ingredients",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                fontFamily: "Roboto",
                               ),
-                              Container(
-                                // margin: EdgeInsets,
-                                height: 100,
-                                color: Colors.green,
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(top: 15),
+                              height: 120,
+                              child: ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: controller.ingredientsList.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return SizedBox(
+                                      width: 75,
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 15.0),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              child: Container(
+                                                height: 50,
+                                                width: 50,
+                                                padding:
+                                                    const EdgeInsets.all(15),
+                                                color: Color(controller
+                                                        .ingredientsList[index]
+                                                    ["colour"]),
+                                                child: Image.asset(
+                                                  controller.ingredientsList[
+                                                      index]["images"],
+                                                  fit: BoxFit.cover,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            controller.ingredientsList[index]
+                                                ["name"],
+                                            maxLines: 2,
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  }),
+                            ),
+                            Container(
+                              height: 2,
+                              margin: const EdgeInsets.only(
+                                  left: 0, right: 0, top: 5, bottom: 5),
+                              color: const Color(0xfff8f8f8),
+                            ),
+                            const Text(
+                              "Nutrition Information",
+                              style: TextStyle(
+                                fontFamily: "Roboto",
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black,
                               ),
-                            ],
-                          ),
+                            ),
+                            const SizedBox(height: 10,),
+                            ListView.builder(
+                                padding: EdgeInsets.zero,
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: controller.nutrionInformation.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Container(
+                                    child: RichText(
+                                      text: TextSpan(children: [
+                                        TextSpan(
+                                            text: controller
+                                                    .nutrionInformation[index]
+                                                ["nutritionname"],
+                                            style: const TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 15,
+                                              textBaseline:
+                                                  TextBaseline.ideographic,
+                                            )),
+                                        WidgetSpan(
+                                          child: Transform.translate(
+                                            offset: const Offset(10, 2),
+                                            child: Text(
+                                              controller
+                                                      .nutrionInformation[index]
+                                                  ["nutritioncontent"],
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                                textBaseline:
+                                                    TextBaseline.alphabetic,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                    ),
+                                  );
+                                }),
+                          ],
                         ),
                       ],
                     ),
@@ -372,6 +468,7 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
                         ),
                         GestureDetector(
                           onTap: () {
+                            Get.dialog(PlaceOrderScreenView());
                           },
                         ),
                       ],
