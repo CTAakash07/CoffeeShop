@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -253,21 +254,21 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                               borderRadius: BorderRadius.circular(20),
                               color: const Color(0xfff6f6f6),
                             ),
-                            child: const Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                      "1",
-                                    style: TextStyle(
-                                      fontFamily: "Roboto",
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  Icon(Icons.arrow_drop_down_sharp),
-                                ],
-                              ),
+                            child: Center(
+                              child: Obx(() => DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                  onChanged: (newValue) {
+                                    controller.selectedCup.value = newValue as String;
+                                  },
+                                  items: controller.numberofCups.map((item) {
+                                    return DropdownMenuItem<String>(
+                                      value: item["values"],
+                                      child: Text(item["values"]),
+                                    );
+                                  }).toList(),
+                                  value: controller.selectedCup.value,
+                                ),
+                              ),),
                             ),
                           ),
                           const Text(
@@ -286,21 +287,21 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                               borderRadius: BorderRadius.circular(20),
                               color: const Color(0xfff6f6f6),
                             ),
-                            child: const Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "M",
-                                    style: TextStyle(
-                                      fontFamily: "Roboto",
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  Icon(Icons.arrow_drop_down_sharp),
-                                ],
-                              ),
+                            child: Center(
+                              child: Obx(() => DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                  onChanged: (newValue) {
+                                    controller.selectedSize.value = newValue as String;
+                                  },
+                                  items: controller.cupSize.map((item) {
+                                    return DropdownMenuItem<String>(
+                                      value: item["values"],
+                                      child: Text(item["values"]),
+                                    );
+                                  }).toList(),
+                                  value: controller.selectedSize.value,
+                                ),
+                              ),),
                             ),
                           ),
                         ],
@@ -1377,7 +1378,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                           ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

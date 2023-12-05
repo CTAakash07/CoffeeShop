@@ -6,6 +6,8 @@ class PlaceOrderScreenController extends GetxController {
   RxInt productQuantity = 1.obs;
   RxInt iceCubeCount = 0.obs;
   RxInt sugarCubeCount = 0.obs;
+  RxString selectedCup = '1'.obs;
+  RxString selectedSize = 'M'.obs;
   RxBool creamNeeded = false.obs;
   RxBool toppingsNeeded = false.obs;
   RxBool chocoSyrupNeeded = false.obs;
@@ -25,11 +27,11 @@ class PlaceOrderScreenController extends GetxController {
   ].obs;
 
   RxList cupSize = [
-    {"sizes" : "S"},
-    {"sizes" : "M"},
-    {"sizes" : "XM"},
-    {"sizes" : "L"},
-    {"sizes" : "XL"},
+    {"values" : "S"},
+    {"values" : "XM"},
+    {"values" : "M"},
+    {"values" : "XL"},
+    {"values" : "L"},
   ].obs;
 
   RxList coldAddedIngredients = [
