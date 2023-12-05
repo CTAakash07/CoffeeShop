@@ -84,14 +84,23 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                     Obx(() => Container(
                                         margin: const EdgeInsets.all(0),
                                         width: 50,
-                                        decoration: BoxDecoration(
-                                          borderRadius: controller.isColdClicked == false ? BorderRadius.only(
-                                            topLeft: Radius.circular(25.0), // Circular radius for the top-left corner
-                                            bottomLeft: Radius.circular(25.0), // Circular radius for the bottom-left corner
-                                          ) : BorderRadius.circular(25),
-                                            color: controller.isColdClicked == false ? Color(0xfff6f6f6) : Colors.brown,
-                                        ),
-                                        child: InkWell(
+                                      decoration: BoxDecoration(
+                                            borderRadius: controller
+                                                        .isColdClicked ==
+                                                    false
+                                                ? BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(25.0),
+                                                    bottomLeft: Radius.circular(
+                                                        25.0),
+                                                  )
+                                                : BorderRadius.circular(25),
+                                            color: controller.isColdClicked ==
+                                                    false
+                                                ? Color(0xfff6f6f6)
+                                                : Colors.brown,
+                                          ),
+                                          child: InkWell(
                                           onTap: () {
                                             controller.isColdClicked.toggle();
                                           },
@@ -218,6 +227,107 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                           ),
                         ],
                       ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(top: 5.0,bottom: 5.0,left: 10.0,right: 10.0),
+                      color: Colors.black12,
+                      height: 2,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(top: 5.0,bottom: 5.0,left: 10.0,right: 10.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Select Cup",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: "Roboto",
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(top: 5.0,bottom: 5.0,left: 8.0,right: 40.0),
+                            height: 40,
+                            width: 60,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: const Color(0xfff6f6f6),
+                            ),
+                            child: const Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                      "1",
+                                    style: TextStyle(
+                                      fontFamily: "Roboto",
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  Icon(Icons.arrow_drop_down_sharp),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Text(
+                            "Select Size",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: "Roboto",
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(top: 5.0,bottom: 5.0,left: 8.0),
+                            height: 40,
+                            width: 60,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: const Color(0xfff6f6f6),
+                            ),
+                            child: const Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "M",
+                                    style: TextStyle(
+                                      fontFamily: "Roboto",
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  Icon(Icons.arrow_drop_down_sharp),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(top: 5.0,bottom: 5.0,left: 10.0,right: 10.0),
+                      color: Colors.black12,
+                      height: 2,
+                    ),
+                    Obx(() =>
+                    controller
+                        .isColdClicked ==
+                        false ? Container(
+                      height: 200,
+                      color: Colors.blue,
+                      margin: EdgeInsets.only(left: 10,right: 10,bottom: 5),
+                    ) : Container(
+                      height: 200,
+                      color: Colors.yellow,
+                      margin: EdgeInsets.only(left: 10,right: 10,bottom: 5),
+                    )
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(top: 5.0,bottom: 5.0,left: 10.0,right: 10.0),
+                      color: Colors.black12,
+                      height: 2,
                     ),
                   ],
                 ),
