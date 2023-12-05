@@ -31,7 +31,6 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
             SizedBox(
                     height: MediaQuery.of(context).size.height / 2,
                     width: MediaQuery.of(context).size.width / 1.75,
-                    // color: Colors.blue,
                     child: ListView(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
@@ -321,7 +320,7 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
                     color: const Color(0xfff8f8f8),
                   ),
                   Container(
-                    height: 230,
+                    height: MediaQuery.of(context).size.height / 4,
                     margin: const EdgeInsets.only(top: 1,right: 15,left: 15, bottom: 5),
                     child: ListView(
                       scrollDirection: Axis.vertical,
