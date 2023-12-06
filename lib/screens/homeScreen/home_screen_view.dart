@@ -1,9 +1,8 @@
-import 'package:coffee_shop/screens/homeScreen/home_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../helperdirectory/approutesdirectory/app_pages.dart';
 import '../orderDetailScreen/orderdetail_screen_controller.dart';
+import 'package:coffee_shop/screens/homeScreen/home_screen_controller.dart';
 
 class HomeScreenView extends GetView<HomeScreenController> {
   HomeScreenView({Key? key}) : super(key: key);
@@ -330,7 +329,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                       padding: const EdgeInsets.only(right: 15.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        child: Container(
+                        child: SizedBox(
                           width: 150,
                           child: Image.asset(
                             controller.restaurant[index]["images"],

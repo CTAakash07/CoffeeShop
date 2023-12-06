@@ -1,5 +1,3 @@
-import 'dart:ui';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrderDetailScreenController extends GetxController {
@@ -20,10 +18,5 @@ class OrderDetailScreenController extends GetxController {
     {"nutritionname" : "Protiens", "nutritioncontent" : "10g"},
     {"nutritionname" : "Caffeine", "nutritioncontent" : "150mg"},
   ].obs;
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
 }

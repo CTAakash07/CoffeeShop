@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrderScreenView extends GetView<OrderScreenController> {
-  OrderScreenView({Key? key}) : super(key: key);
+  const OrderScreenView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

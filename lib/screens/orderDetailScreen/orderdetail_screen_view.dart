@@ -1,10 +1,9 @@
-import 'package:coffee_shop/screens/orderDetailScreen/orderdetail_screen_controller.dart';
-import 'package:coffee_shop/screens/placeOrderScreen/place_order_screen_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-
 import '../../helperdirectory/approutesdirectory/app_pages.dart';
+import 'package:coffee_shop/screens/orderDetailScreen/orderdetail_screen_controller.dart';
+
+import '../placeOrderScreen/place_order_screen_view.dart';
 
 class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
   OrderDetailScreenView({Key? key}) : super(key: key);
@@ -15,7 +14,6 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
 
   @override
   Widget build(BuildContext context) {
-    print("the vlaues which is passed in OrderDetailScreenView is $coffeeShopDetail");
     String price = coffeeShopDetail["price"];
     double convertedprice = 0.0;
     return Scaffold(
@@ -278,7 +276,7 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
                           Positioned(
                             top: 15,
                             left: 20,
-                            child: Container(
+                            child: SizedBox(
                               height: 75,
                               width: MediaQuery.of(context).size.width / 1.95,
                                 child: const Column(
@@ -408,37 +406,35 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: controller.nutrionInformation.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  return Container(
-                                    child: RichText(
-                                      text: TextSpan(children: [
-                                        TextSpan(
-                                            text: controller
+                                  return RichText(
+                                    text: TextSpan(children: [
+                                      TextSpan(
+                                          text: controller
+                                                  .nutrionInformation[index]
+                                              ["nutritionname"],
+                                          style: const TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 15,
+                                            textBaseline:
+                                                TextBaseline.ideographic,
+                                          )),
+                                      WidgetSpan(
+                                        child: Transform.translate(
+                                          offset: const Offset(10, 2),
+                                          child: Text(
+                                            controller
                                                     .nutrionInformation[index]
-                                                ["nutritionname"],
+                                                ["nutritioncontent"],
                                             style: const TextStyle(
-                                              color: Colors.grey,
                                               fontSize: 15,
                                               textBaseline:
-                                                  TextBaseline.ideographic,
-                                            )),
-                                        WidgetSpan(
-                                          child: Transform.translate(
-                                            offset: const Offset(10, 2),
-                                            child: Text(
-                                              controller
-                                                      .nutrionInformation[index]
-                                                  ["nutritioncontent"],
-                                              style: TextStyle(
-                                                fontSize: 15,
-                                                textBaseline:
-                                                    TextBaseline.alphabetic,
-                                                color: Colors.black,
-                                              ),
+                                                  TextBaseline.alphabetic,
+                                              color: Colors.black,
                                             ),
                                           ),
                                         ),
-                                      ]),
-                                    ),
+                                      ),
+                                    ]),
                                   );
                                 }),
                           ],
@@ -471,8 +467,13 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
                           onTap: () {
                             price = price.replaceAll("\$", "");
                             convertedprice = double.tryParse(price) ?? 0.0;
-                            Get.toNamed(Routes.PLACE_ORDER_SCREEN,
-                                arguments: convertedprice,
+                            // Get.toNamed(Routes.PLACE_ORDER_SCREEN,
+                            //     arguments: convertedprice,
+                            // );
+                            Get.bottomSheet(
+                                PlaceOrderScreenView(receivedValue: convertedprice),
+                              // backgroundColor: Colors.transparent,
+                              barrierColor: Colors.black.withOpacity(0.7),
                             );
                           },
                         ),

@@ -1,40 +1,41 @@
-import 'dart:ffi';
-
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../orderDetailScreen/orderdetail_screen_view.dart';
 import 'package:coffee_shop/screens/placeOrderScreen/place_order_screen_controller.dart';
 
 class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
-  PlaceOrderScreenView({Key? key}) : super(key: key);
+  final double receivedValue;
+
+  PlaceOrderScreenView({required this.receivedValue});
+  // PlaceOrderScreenView({Key? key}) : super(key: key);
 
   @override
   var controller = Get.put(PlaceOrderScreenController());
-  var receivedValue = Get.arguments;
+  // var receivedValue = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
     controller.priceValue.value = receivedValue;
     controller.productprice.value = controller.priceValue.value.toStringAsFixed(controller.decimalPlaces.value);
-    return GestureDetector(
-      onTap: () {},
-      child: Dialog(
-        backgroundColor: Colors.transparent,
-        insetPadding: const EdgeInsets.all(0),
-        child:
-        Stack(
-          children: [
-            Positioned(
-              bottom: 0,
-              height: MediaQuery.of(context).size.height / 1.53,
-              width: MediaQuery.of(context).size.width,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
+    return
+      // GestureDetector(
+      // onTap: () {},
+      // child: Dialog(
+      //   backgroundColor: Colors.transparent,
+      //   insetPadding: const EdgeInsets.all(0),
+      //   child:
+      //   Stack(
+      //     children: [
+      //       Positioned(
+      //         bottom: 0,
+      //         height: MediaQuery.of(context).size.height / 1.53,
+      //         width: MediaQuery.of(context).size.width,
+      //         child:
+              Container(
+                height: MediaQuery.of(context).size.height / 1.52,
+                // decoration: BoxDecoration(
+                //   borderRadius: BorderRadius.circular(25),
                   color: Colors.white,
-                ),
+                // ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -1339,7 +1340,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
+                              const Text(
                                 "Total",
                                 style: TextStyle(
                                   fontFamily: "Roboto",
@@ -1350,7 +1351,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                               ),
                               Obx(() => Text(
                                 "\$${controller.productprice.value}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontFamily: "Roboto",
                                     fontSize: 23,
                                     fontWeight: FontWeight.w400,
@@ -1396,11 +1397,11 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                     ),
                   ],
                 ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+              );
+    //         ),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 }

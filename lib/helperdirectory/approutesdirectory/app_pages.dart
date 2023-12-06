@@ -45,7 +45,7 @@ class AppPages {
     GetPage(
       name: Routes.FAVORITE_SCREEN,
       page: () => FavoriteScreenView(),
-      binding: FavoriteScreenBindng(),
+      binding: FavoriteScreenBinding(),
     ),
     GetPage(
       name: Routes.PROFILE_SCREEN,
@@ -57,11 +57,11 @@ class AppPages {
       page: () => OrderDetailScreenView(),
       binding: OrderdetailScreenBinding(),
     ),
-    GetPage(
-      name: Routes.PLACE_ORDER_SCREEN,
-      page: () => PlaceOrderScreenView(),
-      binding: PlaceOrderScreenBinding(),
-    ),
+    // GetPage(
+    //   name: Routes.PLACE_ORDER_SCREEN,
+    //   page: () => PlaceOrderScreenView(),
+    //   binding: PlaceOrderScreenBinding(),
+    // ),
   ];
 }
 

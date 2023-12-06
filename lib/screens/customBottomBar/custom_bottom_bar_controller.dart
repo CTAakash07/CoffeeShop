@@ -8,6 +8,7 @@ class CustomAppBarController extends GetxController with GetSingleTickerProvider
   RxInt selectedIndex = 0.obs;
   RxBool isLoader = false.obs;
 
+  @override
   void onInit() async {
     tabController = TabController(vsync: this, length: 4);
     checkInternetConnection();
@@ -22,11 +23,6 @@ class CustomAppBarController extends GetxController with GetSingleTickerProvider
     }else{
       Get.snackbar('Failure', "No Internet Available");
     }
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 
 }
