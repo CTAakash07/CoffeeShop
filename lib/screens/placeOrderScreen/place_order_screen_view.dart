@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +10,14 @@ import 'package:coffee_shop/screens/placeOrderScreen/place_order_screen_controll
 class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
   PlaceOrderScreenView({Key? key}) : super(key: key);
 
+  @override
   var controller = Get.put(PlaceOrderScreenController());
+  var receivedValue = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
+    controller.priceValue.value = receivedValue;
+    controller.productprice.value = controller.priceValue.value.toStringAsFixed(controller.decimalPlaces.value);
     return GestureDetector(
       onTap: () {},
       child: Dialog(
@@ -49,6 +55,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                           ),
                           GestureDetector(
                             onTap: () {
+                              // controller.productQuantity = 1.obs;
                               Get.back();
                             },
                           ),
@@ -170,58 +177,66 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                 height: 40,
                                 width: 75,
                                 margin: const EdgeInsets.only(top: 10,bottom: 10),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Obx(
-                                      () => Container(
+                                child: Obx(
+                                      () =>Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      // Obx(() =>
+                                            Container(
+                                          width: 25,
+                                          padding: const EdgeInsets.all(5),
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: controller.productQuantity > 1
+                                                ? Colors.amber
+                                                : Colors.grey,
+                                          ),
+                                          child: InkWell(
+                                            onTap: () {
+                                              if (controller.productQuantity > 1) {
+                                                controller.productQuantity -= 1;
+                                                double result = controller.priceValue.value - receivedValue;
+                                                controller.priceValue.value = result;
+                                                controller.productprice.value = controller.priceValue.value.toStringAsFixed(controller.decimalPlaces.value);
+                                              }
+                                            },
+                                            child: Image.asset(
+                                                "assest/images/minus.png",
+                                              fit: BoxFit.cover,
+                                            )
+                                          ),
+                                        ),
+                                      // ),
+                                      const Spacer(),
+                                      // Obx(() =>
+                                          Text(
+                                          "${controller.productQuantity}",
+                                          style: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      // ),
+                                      const Spacer(),
+                                      Container(
                                         width: 25,
-                                        padding: const EdgeInsets.all(5),
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
-                                          color: controller.productQuantity > 1
-                                              ? Colors.amber
-                                              : Colors.grey,
+                                          color: Colors.amber,
                                         ),
                                         child: InkWell(
                                           onTap: () {
-                                            if (controller.productQuantity > 1) {
-                                              controller.productQuantity -= 1;
-                                            }
+                                            controller.productQuantity += 1;
+                                            double result = controller.priceValue.value + receivedValue;
+                                            controller.priceValue.value = result;
+                                            controller.productprice.value = controller.priceValue.value.toStringAsFixed(controller.decimalPlaces.value);
                                           },
-                                          child: Image.asset(
-                                              "assest/images/minus.png",
-                                            fit: BoxFit.cover,
-                                          )
+                                          child: const Icon(Icons.add),
                                         ),
                                       ),
-                                    ),
-                                    const Spacer(),
-                                    Obx(
-                                      () => Text(
-                                        "${controller.productQuantity}",
-                                        style: const TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ),
-                                    const Spacer(),
-                                    Container(
-                                      width: 25,
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.amber,
-                                      ),
-                                      child: InkWell(
-                                        onTap: () {
-                                          controller.productQuantity += 1;
-                                        },
-                                        child: const Icon(Icons.add),
-                                      ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -1320,7 +1335,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Column(
+                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -1333,15 +1348,15 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                   color: Colors.black
                                 ),
                               ),
-                              Text(
-                                "\$9,50",
+                              Obx(() => Text(
+                                "\$${controller.productprice.value}",
                                 style: TextStyle(
                                     fontFamily: "Roboto",
                                     fontSize: 23,
                                     fontWeight: FontWeight.w400,
                                     color: Colors.amber
                                 ),
-                              ),
+                              ),),
                             ],
                           ),
                           Container(

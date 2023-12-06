@@ -6,6 +6,9 @@ class PlaceOrderScreenController extends GetxController {
   RxInt productQuantity = 1.obs;
   RxInt iceCubeCount = 0.obs;
   RxInt sugarCubeCount = 0.obs;
+  RxInt decimalPlaces = 3.obs;
+  RxDouble priceValue =  0.0.obs;
+  RxString productprice = '1'.obs;
   RxString selectedCup = '1'.obs;
   RxString selectedSize = 'M'.obs;
   RxBool creamNeeded = false.obs;
@@ -49,9 +52,5 @@ class PlaceOrderScreenController extends GetxController {
     {"icons": "assest/images/ingredients_topping.png", "name" : "Topping", "id" : "4" , "value" : false},
   ].obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
 }

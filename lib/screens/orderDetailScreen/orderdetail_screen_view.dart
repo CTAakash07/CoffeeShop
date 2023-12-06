@@ -3,8 +3,8 @@ import 'package:coffee_shop/screens/placeOrderScreen/place_order_screen_view.dar
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+
 import '../../helperdirectory/approutesdirectory/app_pages.dart';
-import '../placeOrderScreen/place_order_screen_controller.dart';
 
 class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
   OrderDetailScreenView({Key? key}) : super(key: key);
@@ -12,10 +12,12 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
   @override
   var controller = Get.put(OrderDetailScreenController());
   var coffeeShopDetail = Get.arguments;
-  var placeordercontroller = Get.put(PlaceOrderScreenController());
 
   @override
   Widget build(BuildContext context) {
+    print("the vlaues which is passed in OrderDetailScreenView is $coffeeShopDetail");
+    String price = coffeeShopDetail["price"];
+    double convertedprice = 0.0;
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -467,7 +469,11 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Get.dialog(PlaceOrderScreenView());
+                            price = price.replaceAll("\$", "");
+                            convertedprice = double.tryParse(price) ?? 0.0;
+                            Get.toNamed(Routes.PLACE_ORDER_SCREEN,
+                                arguments: convertedprice,
+                            );
                           },
                         ),
                       ],

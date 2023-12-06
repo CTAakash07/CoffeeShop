@@ -29,7 +29,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Welcome, Nadia",
+                  "Welcome, Aakash",
                   style: TextStyle(
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.w700,
@@ -277,7 +277,6 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                     onTap: () {
                                       Get.toNamed(Routes.ORDER_DETAIL_SCREEN, arguments: controller.coffeeShop[index]);
                                       ordercontroller.productlike = controller.isLikedList[index].obs;
-                                      print("The values of the coffeshop index is ${controller.coffeeShop[index]}");
                                     },
                                   ),
                                 ],
