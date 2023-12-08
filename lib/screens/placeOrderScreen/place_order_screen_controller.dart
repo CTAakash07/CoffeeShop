@@ -10,7 +10,7 @@ class PlaceOrderScreenController extends GetxController {
   RxDouble priceValue =  0.0.obs;
   RxString productprice = '1'.obs;
   RxString selectedCup = '1'.obs;
-  RxString selectedSize = 'M'.obs;
+  RxString selectedSize = 'S'.obs;
   RxBool creamNeeded = false.obs;
   RxBool toppingsNeeded = false.obs;
   RxBool chocoSyrupNeeded = false.obs;

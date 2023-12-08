@@ -467,14 +467,12 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
                           onTap: () {
                             price = price.replaceAll("\$", "");
                             convertedprice = double.tryParse(price) ?? 0.0;
-                            // Get.toNamed(Routes.PLACE_ORDER_SCREEN,
-                            //     arguments: convertedprice,
-                            // );
-                            Get.bottomSheet(
-                                PlaceOrderScreenView(receivedValue: convertedprice),
-                              // backgroundColor: Colors.transparent,
-                              barrierColor: Colors.black.withOpacity(0.7),
+                            Get.toNamed(Routes.PLACE_ORDER_SCREEN,
+                                arguments: convertedprice,
                             );
+                            // Get.bottomSheet(
+                            //     PlaceOrderScreenView(receivedValue: convertedprice),
+                            // );
                           },
                         ),
                       ],

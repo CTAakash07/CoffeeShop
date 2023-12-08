@@ -3,14 +3,14 @@ import 'package:get/get.dart';
 import 'package:coffee_shop/screens/placeOrderScreen/place_order_screen_controller.dart';
 
 class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
-  final double receivedValue;
+  // final double receivedValue;
 
-  PlaceOrderScreenView({required this.receivedValue});
-  // PlaceOrderScreenView({Key? key}) : super(key: key);
+  // PlaceOrderScreenView({required this.receivedValue});
+  PlaceOrderScreenView({Key? key}) : super(key: key);
 
   @override
   var controller = Get.put(PlaceOrderScreenController());
-  // var receivedValue = Get.arguments;
+  var receivedValue = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +32,10 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
       //         child:
               Container(
                 height: MediaQuery.of(context).size.height / 1.52,
-                // decoration: BoxDecoration(
-                //   borderRadius: BorderRadius.circular(25),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
                   color: Colors.white,
-                // ),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
