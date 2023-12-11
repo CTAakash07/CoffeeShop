@@ -30,7 +30,10 @@ class MyApp extends StatelessWidget {
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       theme: ThemeData(
-          textTheme: GoogleFonts.workSansTextTheme()
+        textTheme: GoogleFonts.workSansTextTheme(),
+        bottomSheetTheme: BottomSheetThemeData(
+          backgroundColor: Colors.blue.withOpacity(1),
+        ),
       ),
       debugShowCheckedModeBanner: false,
     );

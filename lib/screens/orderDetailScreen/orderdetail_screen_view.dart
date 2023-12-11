@@ -467,12 +467,21 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
                           onTap: () {
                             price = price.replaceAll("\$", "");
                             convertedprice = double.tryParse(price) ?? 0.0;
-                            Get.toNamed(Routes.PLACE_ORDER_SCREEN,
-                                arguments: convertedprice,
-                            );
-                            // Get.bottomSheet(
-                            //     PlaceOrderScreenView(receivedValue: convertedprice),
-                            // );
+                            showModalBottomSheet(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(20),
+                                  ),
+                                ),
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return SizedBox(
+                                    height: MediaQuery.of(context).size.height,
+                                    child: PlaceOrderScreenView(
+                                        receivedValue: convertedprice),
+                                  );
+                                });
                           },
                         ),
                       ],
