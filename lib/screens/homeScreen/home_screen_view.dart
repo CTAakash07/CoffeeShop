@@ -121,8 +121,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                       color: const Color(0xffd6b58e),
                                     ),
                                     child: ListView(
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
+                                      physics: const NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
                                       children: [
                                         const SizedBox(
@@ -157,14 +156,17 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                             const SizedBox(
                                               height: 8,
                                             ),
-                                            Text(
-                                              controller.coffeeShop[index]
-                                                  ["description"],
-                                              maxLines: 3,
-                                              style: const TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400,
-                                                color: Colors.white,
+                                            SizedBox(
+                                              height: 50,
+                                              child: Text(
+                                                controller.coffeeShop[index]
+                                                    ["description"],
+                                                maxLines: 3,
+                                                style: const TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.white,
+                                                ),
                                               ),
                                             ),
                                           ],

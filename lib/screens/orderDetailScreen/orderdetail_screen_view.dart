@@ -468,9 +468,9 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
                             price = price.replaceAll("\$", "");
                             convertedprice = double.tryParse(price) ?? 0.0;
                             showModalBottomSheet(
-                                shape: RoundedRectangleBorder(
+                                shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.vertical(
-                                    top: Radius.circular(20),
+                                    top: Radius.circular(25),
                                   ),
                                 ),
                                 clipBehavior: Clip.antiAliasWithSaveLayer,

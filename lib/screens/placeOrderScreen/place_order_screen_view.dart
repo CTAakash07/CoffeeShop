@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coffee_shop/screens/placeOrderScreen/place_order_screen_controller.dart';
@@ -15,15 +17,13 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
   @override
   Widget build(BuildContext context) {
     controller.priceValue.value = receivedValue;
-    controller.productprice.value = controller.priceValue.value
+    controller.sizepriceValue.value = receivedValue;
+    controller.productprice.value = controller.sizepriceValue.value
         .toStringAsFixed(controller.decimalPlaces.value);
+    double result = 0.0;
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
-          color: Colors.white,
-        ),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -189,13 +189,15 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                       onTap: () {
                                         if (controller.productQuantity > 1) {
                                           controller.productQuantity -= 1;
-                                          double result =
-                                              controller.priceValue.value -
-                                                  receivedValue;
-                                          controller.priceValue.value = result;
+                                          if (controller.isCupSizeChannged == true) {
+                                            result = controller.sizepriceValue.value - (controller.priceValue.value + controller.sizeindexpriceValue.value);
+                                          } else {
+                                            result = controller.sizepriceValue.value - controller.priceValue.value;
+                                          }
+                                          controller.sizepriceValue.value = result;
                                           controller.productprice.value =
                                               controller
-                                                  .priceValue.value
+                                                  .sizepriceValue.value
                                                   .toStringAsFixed(controller
                                                       .decimalPlaces.value);
                                         }
@@ -227,14 +229,18 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                   child: InkWell(
                                     onTap: () {
                                       controller.productQuantity += 1;
-                                      double result =
-                                          controller.priceValue.value +
-                                              receivedValue;
-                                      controller.priceValue.value = result;
-                                      controller.productprice.value = controller
-                                          .priceValue.value
-                                          .toStringAsFixed(
-                                              controller.decimalPlaces.value);
+                                      if (controller.isCupSizeChannged == true) {
+                                        result = controller.sizepriceValue.value + (controller.priceValue.value + controller.sizeindexpriceValue.value);
+                                      } else {
+                                        result = controller.sizepriceValue.value + controller.priceValue.value;
+                                      }
+
+                                      controller.sizepriceValue.value = result;
+                                      controller.productprice.value =
+                                          controller
+                                              .sizepriceValue.value
+                                              .toStringAsFixed(controller
+                                              .decimalPlaces.value);
                                     },
                                     child: const Icon(Icons.add),
                                   ),
@@ -318,8 +324,21 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                           () => DropdownButtonHideUnderline(
                             child: DropdownButton(
                               onChanged: (newValue) {
-                                controller.selectedSize.value =
-                                    newValue as String;
+                                final selected = controller.cupSize.firstWhere(
+                                      (item) => item["values"] == newValue,
+                                  orElse: () => {"values": "", "price": 0.0},
+                                );
+                                if (controller.selectedSize.value != selected["values"] as String) {
+                                  controller.sizeindexpriceValue.value = selected["price"] as double;
+                                  controller.sizepriceValue.value = controller.priceValue.value + selected["price"] as double;
+                                  controller.productprice.value = controller.sizepriceValue.value.toStringAsFixed(controller.decimalPlaces.value);
+                                  controller.selectedSize.value = selected["values"] as String;
+                                  controller.productQuantity.value = 1;
+                                  if (controller.isCupSizeChannged == false) {
+                                    controller.isCupSizeChannged.toggle();
+                                  }
+                                  print("the values of the selected index is $selected ");
+                                }
                               },
                               items: controller.cupSize.map((item) {
                                 return DropdownMenuItem<String>(

@@ -57,11 +57,6 @@ class AppPages {
       page: () => OrderDetailScreenView(),
       binding: OrderdetailScreenBinding(),
     ),
-    // GetPage(
-    //   name: Routes.PLACE_ORDER_SCREEN,
-    //   page: () => PlaceOrderScreenView(),
-    //   binding: PlaceOrderScreenBinding(),
-    // ),
   ];
 }
 
