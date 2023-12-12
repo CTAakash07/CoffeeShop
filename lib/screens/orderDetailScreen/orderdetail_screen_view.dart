@@ -37,18 +37,21 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
                       children: [
                         Container(
                           margin: const EdgeInsets.only(top: 30, left: 10, right: 10),
-                          height: 75,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                                Text(
-                                 coffeeShopDetail["coffeename"],
-                                  maxLines: 2,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 22,
-                                    fontFamily: "Roboto",
-                                    color: Colors.white,
+                              Container(
+                                  width: MediaQuery.of(context).size.width / 2.85,
+                                  margin: const EdgeInsets.only(right: 10),
+                                  child: Text(
+                                   coffeeShopDetail["coffeename"],
+                                    maxLines: 2,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 22,
+                                      fontFamily: "Roboto",
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               Padding(
