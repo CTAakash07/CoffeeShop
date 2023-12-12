@@ -1,13 +1,17 @@
 import 'dart:ffi';
 
+import 'package:coffee_shop/helperdirectory/approutesdirectory/app_pages.dart';
+import 'package:coffee_shop/screens/customDialogScreen/custom_dialog_controller.dart';
+import 'package:coffee_shop/screens/customDialogScreen/custom_dialog_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coffee_shop/screens/placeOrderScreen/place_order_screen_controller.dart';
 
 class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
   final double receivedValue;
+  final data;
 
-  PlaceOrderScreenView({required this.receivedValue});
+  PlaceOrderScreenView({required this.receivedValue, this.data});
   // PlaceOrderScreenView({Key? key}) : super(key: key);
 
   @override
@@ -16,10 +20,10 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
 
   @override
   Widget build(BuildContext context) {
+    print("the data from thew previous screen was $data");
     controller.priceValue.value = receivedValue;
     controller.sizepriceValue.value = receivedValue;
-    controller.productprice.value = controller.sizepriceValue.value
-        .toStringAsFixed(controller.decimalPlaces.value);
+    controller.productprice.value = controller.sizepriceValue.value.toStringAsFixed(controller.decimalPlaces.value);
     double result = 0.0;
     return Scaffold(
       body: Container(
@@ -337,7 +341,6 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                   if (controller.isCupSizeChannged == false) {
                                     controller.isCupSizeChannged.toggle();
                                   }
-                                  print("the values of the selected index is $selected ");
                                 }
                               },
                               items: controller.cupSize.map((item) {
@@ -1393,7 +1396,19 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                           color: Colors.brown,
                         ),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Get.back();
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  content: IntrinsicHeight(
+                                    child: CustomDialogView(data, controller.sizepriceValue.value),
+                                  ),
+                                );
+                              },
+                            );
+                          },
                           child: const Center(
                             child: Text(
                               "Place Order",

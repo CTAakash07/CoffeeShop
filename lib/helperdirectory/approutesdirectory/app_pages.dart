@@ -1,3 +1,5 @@
+import 'package:coffee_shop/screens/customDialogScreen/custom_dialog_binding.dart';
+import 'package:coffee_shop/screens/customDialogScreen/custom_dialog_view.dart';
 import 'package:get/get.dart';
 import 'package:coffee_shop/screens/splashScreen/splash_screen_view.dart';
 import '../../screens/customBottomBar/custom_bottom_bar_binding.dart';
@@ -32,6 +34,11 @@ class AppPages {
       page: () => CustomAppBarView(),
       binding: CustomAppBarBinding(),
     ),
+    // GetPage(
+    //   name: Routes.DIALOG_WIDGET,
+    //   page: () => CustomDialogView(),
+    //   binding: CustomDialogBinding(),
+    // ),
     GetPage(
       name: Routes.HOME_SCREEN,
       page: () => HomeScreenView(),
@@ -70,5 +77,6 @@ abstract class Routes {
   static const FAVORITE_SCREEN = '/favorite_screen';
   static const PROFILE_SCREEN = '/profile_screen';
   static const PLACE_ORDER_SCREEN = '/place_order_screen';
+  static const DIALOG_WIDGET = '/dialog_widget';
 
 }

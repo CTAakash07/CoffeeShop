@@ -481,8 +481,7 @@ class OrderDetailScreenView extends GetView<OrderDetailScreenController> {
                                 builder: (BuildContext context) {
                                   return SizedBox(
                                     height: MediaQuery.of(context).size.height,
-                                    child: PlaceOrderScreenView(
-                                        receivedValue: convertedprice),
+                                    child: PlaceOrderScreenView(receivedValue: convertedprice, data: coffeeShopDetail),
                                   );
                                 });
                           },
