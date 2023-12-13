@@ -1,9 +1,9 @@
-import 'dart:ffi';
-
 import 'package:coffee_shop/screens/customDialogScreen/custom_dialog_controller.dart';
 import 'package:coffee_shop/screens/homeScreen/home_screen_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../customBottomBar/custom_bottom_bar_view.dart';
 
 class CustomDialogView extends GetView<CustomDialogController> {
   final values;
@@ -16,9 +16,11 @@ class CustomDialogView extends GetView<CustomDialogController> {
 
   @override
   var controller = Get.put(CustomDialogController());
+  var priceValue = '';
 
   @override
   Widget build(BuildContext context) {
+    priceValue = Price.toStringAsFixed(2);
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,7 +42,7 @@ class CustomDialogView extends GetView<CustomDialogController> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.offAll(HomeScreenView());
+                      Get.offAll(CustomAppBarView());
                     },
                   ),
                 ],
@@ -91,18 +93,18 @@ class CustomDialogView extends GetView<CustomDialogController> {
             child: RichText(
               text: TextSpan(
                 children: [
-                  TextSpan(
+                  const TextSpan(
                     text: "Your Order Placed for",
                     style: TextStyle(
-                      color: Colors.red,
+                      color: Colors.black38,
                     ),
                   ),
-                  WidgetSpan(
-                    child: SizedBox(width: 8), // Add space between text elements
+                  const WidgetSpan(
+                    child: SizedBox(width: 8),
                   ),
                   TextSpan(
-                    text: "\$$Price",
-                    style: TextStyle(
+                    text: "\$$priceValue",
+                    style: const TextStyle(
                       color: Colors.red,
                     ),
                   ),

@@ -6,6 +6,7 @@ import 'package:coffee_shop/screens/customDialogScreen/custom_dialog_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coffee_shop/screens/placeOrderScreen/place_order_screen_controller.dart';
+import '../orderScreen/order_screen_controller.dart';
 
 class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
   final double receivedValue;
@@ -16,6 +17,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
 
   @override
   var controller = Get.put(PlaceOrderScreenController());
+  var orderController = Get.put(OrderScreenController());
   // var receivedValue = Get.arguments;
 
   @override
@@ -98,6 +100,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                     child: InkWell(
                                       onTap: () {
                                         controller.isColdClicked.toggle();
+                                        controller.selectedTemprature = 'Cold'.obs;
                                       },
                                       child: Center(
                                         child: Text(
@@ -137,6 +140,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                     child: InkWell(
                                       onTap: () {
                                         controller.isColdClicked.toggle();
+                                        controller.selectedTemprature = 'Hot'.obs;
                                       },
                                       child: Center(
                                         child: Text(
@@ -533,6 +537,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                                       true) {
                                                     controller.creamNeeded
                                                         .toggle();
+                                                    controller.creamValue = "Without".obs;
                                                   }
                                                 },
                                                 child: Image.asset(
@@ -568,6 +573,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                                     false) {
                                                   controller.creamNeeded
                                                       .toggle();
+                                                  controller.creamValue = "With".obs;
                                                 }
                                               },
                                               child: const Icon(Icons.add),
@@ -643,6 +649,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                                       true) {
                                                     controller.chocoSyrupNeeded
                                                         .toggle();
+                                                    controller.chocoSyrupValue = "Without".obs;
                                                   }
                                                 },
                                                 child: Image.asset(
@@ -679,6 +686,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                                     false) {
                                                   controller.chocoSyrupNeeded
                                                       .toggle();
+                                                  controller.chocoSyrupValue = "With".obs;
                                                 }
                                               },
                                               child: const Icon(Icons.add),
@@ -753,6 +761,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                                       true) {
                                                     controller.toppingsNeeded
                                                         .toggle();
+                                                    controller.toppingsValue = "Without".obs;
                                                   }
                                                 },
                                                 child: Image.asset(
@@ -790,6 +799,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                                     false) {
                                                   controller.toppingsNeeded
                                                       .toggle();
+                                                  controller.toppingsValue = "With".obs;
                                                 }
                                               },
                                               child: const Icon(Icons.add),
@@ -1397,9 +1407,11 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                         ),
                         child: InkWell(
                           onTap: () {
+                            orderController.placeOrder(data["coffeename"], data["images"], data["name"], controller.productQuantity.value,  controller.sizepriceValue.value.toStringAsFixed(3), controller.selectedTemprature.value, controller.sugarCubeCount.value, controller.iceCubeCount.value, controller.selectedSize.value, controller.selectedCup.value, controller.creamValue.value, controller.chocoSyrupValue.value, controller.toppingsValue.value);
                             Get.back();
                             showDialog(
                               context: context,
+                              barrierDismissible: false,
                               builder: (BuildContext context) {
                                 return AlertDialog(
                                   content: IntrinsicHeight(
@@ -1408,6 +1420,17 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                 );
                               },
                             );
+                            controller.productQuantity.value = 1;
+                            controller.sugarCubeCount.value = 0;
+                            controller.iceCubeCount.value = 0;
+                            controller.selectedSize.value = 'S';
+                            controller.selectedCup.value = '1';
+                            controller.creamValue.value = "No Thanks";
+                            controller.toppingsValue.value = "No Thanks";
+                            controller.chocoSyrupValue.value = "No Thanks";
+                            controller.creamNeeded.value = false;
+                            controller.toppingsNeeded.value = false;
+                            controller.chocoSyrupNeeded.value = false;
                           },
                           child: const Center(
                             child: Text(
