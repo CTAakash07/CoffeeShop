@@ -17,12 +17,10 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
 
   @override
   var controller = Get.put(PlaceOrderScreenController());
-  var orderController = Get.put(OrderScreenController());
   // var receivedValue = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
-    print("the data from thew previous screen was $data");
     controller.priceValue.value = receivedValue;
     controller.sizepriceValue.value = receivedValue;
     controller.productprice.value = controller.sizepriceValue.value.toStringAsFixed(controller.decimalPlaces.value);
@@ -1083,6 +1081,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                                       true) {
                                                     controller.creamNeeded
                                                         .toggle();
+                                                    controller.creamValue.value = 'Without';
                                                   }
                                                 },
                                                 child: Image.asset(
@@ -1118,6 +1117,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                                     false) {
                                                   controller.creamNeeded
                                                       .toggle();
+                                                  controller.creamValue.value = 'With';
                                                 }
                                               },
                                               child: const Icon(Icons.add),
@@ -1193,6 +1193,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                                       true) {
                                                     controller.chocoSyrupNeeded
                                                         .toggle();
+                                                    controller.chocoSyrupValue.value = 'Without';
                                                   }
                                                 },
                                                 child: Image.asset(
@@ -1229,6 +1230,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                                     false) {
                                                   controller.chocoSyrupNeeded
                                                       .toggle();
+                                                  controller.chocoSyrupValue.value = 'With';
                                                 }
                                               },
                                               child: const Icon(Icons.add),
@@ -1303,6 +1305,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                                       true) {
                                                     controller.toppingsNeeded
                                                         .toggle();
+                                                    controller.toppingsValue.value = 'Without';
                                                   }
                                                 },
                                                 child: Image.asset(
@@ -1339,6 +1342,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                                     false) {
                                                   controller.toppingsNeeded
                                                       .toggle();
+                                                  controller.toppingsValue.value = 'With';
                                                 }
                                               },
                                               child: const Icon(Icons.add),
@@ -1407,7 +1411,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                         ),
                         child: InkWell(
                           onTap: () {
-                            orderController.placeOrder(data["coffeename"], data["images"], data["name"], controller.productQuantity.value,  controller.sizepriceValue.value.toStringAsFixed(3), controller.selectedTemprature.value, controller.sugarCubeCount.value, controller.iceCubeCount.value, controller.selectedSize.value, controller.selectedCup.value, controller.creamValue.value, controller.chocoSyrupValue.value, controller.toppingsValue.value);
+                            Get.put(OrderScreenController()).placeOrder(data["coffeename"], data["images"], data["name"], controller.productQuantity.value,  controller.sizepriceValue.value.toStringAsFixed(3), controller.selectedTemprature.value, controller.sugarCubeCount.value, controller.iceCubeCount.value, controller.selectedSize.value, controller.selectedCup.value, controller.creamValue.value, controller.chocoSyrupValue.value, controller.toppingsValue.value);
                             Get.back();
                             showDialog(
                               context: context,
@@ -1425,9 +1429,9 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                             controller.iceCubeCount.value = 0;
                             controller.selectedSize.value = 'S';
                             controller.selectedCup.value = '1';
-                            controller.creamValue.value = "No Thanks";
-                            controller.toppingsValue.value = "No Thanks";
-                            controller.chocoSyrupValue.value = "No Thanks";
+                            controller.creamValue.value = "Without";
+                            controller.toppingsValue.value = "Without";
+                            controller.chocoSyrupValue.value = "Without";
                             controller.creamNeeded.value = false;
                             controller.toppingsNeeded.value = false;
                             controller.chocoSyrupNeeded.value = false;

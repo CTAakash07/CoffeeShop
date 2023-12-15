@@ -34,11 +34,6 @@ class AppPages {
       page: () => CustomAppBarView(),
       binding: CustomAppBarBinding(),
     ),
-    // GetPage(
-    //   name: Routes.DIALOG_WIDGET,
-    //   page: () => CustomDialogView(),
-    //   binding: CustomDialogBinding(),
-    // ),
     GetPage(
       name: Routes.HOME_SCREEN,
       page: () => HomeScreenView(),

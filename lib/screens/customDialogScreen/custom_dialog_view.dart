@@ -42,7 +42,7 @@ class CustomDialogView extends GetView<CustomDialogController> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.offAll(CustomAppBarView());
+                      Get.offAll(() => CustomAppBarView());
                     },
                   ),
                 ],

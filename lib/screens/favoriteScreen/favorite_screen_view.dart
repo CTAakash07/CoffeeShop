@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FavoriteScreenView extends GetView<FavoriteScreenController> {
-  const FavoriteScreenView({Key? key}) : super(key: key);
+   FavoriteScreenView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

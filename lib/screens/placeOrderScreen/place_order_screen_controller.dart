@@ -14,9 +14,9 @@ class PlaceOrderScreenController extends GetxController {
   RxString selectedCup = '1'.obs;
   RxString selectedSize = 'S'.obs;
   RxString selectedTemprature = 'Cold'.obs;
-  RxString creamValue = "No Thanks".obs;
-  RxString toppingsValue = "No Thanks".obs;
-  RxString chocoSyrupValue = "No Thanks".obs;
+  RxString creamValue = "Without".obs;
+  RxString toppingsValue = "Without".obs;
+  RxString chocoSyrupValue = "Without".obs;
   RxBool creamNeeded = false.obs;
   RxBool toppingsNeeded = false.obs;
   RxBool chocoSyrupNeeded = false.obs;
@@ -38,10 +38,10 @@ class PlaceOrderScreenController extends GetxController {
 
   RxList cupSize = [
     {"values" : "S", "price" : 0.0},
-    {"values" : "XM", "price" : 1.0},
-    {"values" : "M", "price" : 1.5},
-    {"values" : "XL", "price" : 2.0},
-    {"values" : "L", "price" : 2.5},
+    {"values" : "M", "price" : 1.0},
+    {"values" : "XM", "price" : 1.5},
+    {"values" : "L", "price" : 2.0},
+    {"values" : "XL", "price" : 2.5},
   ].obs;
 
   RxList coldAddedIngredients = [
