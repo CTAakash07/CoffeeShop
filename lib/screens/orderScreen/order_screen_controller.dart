@@ -45,8 +45,8 @@ class OrderScreenController extends GetxController {
 
   void removeOrder(int index) {
     if (index >= 0 && index < orders.length) {
-      // orders.removeAt(index);
-      // update(); // Trigger the update to refresh the UI
+      orders.removeAt(index);
+      update(); // Trigger the update to refresh the UI
     }
   }
 
