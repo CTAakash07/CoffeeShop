@@ -1,30 +1,44 @@
+import 'dart:convert';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OrderScreenController extends GetxController {
 
   RxList<Map<String, dynamic>> orders = <Map<String, dynamic>>[].obs;
-  // List orders = [];
-  // RxList orders = [].obs;
 
   @override
   void onInit() async {
-    initializeOrdersList();
     super.onInit();
+    loadOrders();
   }
 
-  RxList<Map<String, dynamic>> initializeOrdersList() {
-    // RxList<Map<String, dynamic>> orders = <Map<String, dynamic>>[].obs;
-    return orders;
+  void loadOrders() async {
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final List<String>? ordersJsonList = prefs.getStringList('orders');
+
+    if (ordersJsonList != null) {
+      orders.value = ordersJsonList.map((orderJson) {
+        return Map<String, dynamic>.from(json.decode(orderJson));
+      }).toList();
+    }
+
+  }
+
+  void saveOrders() async {
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final List<String> ordersJsonList = orders.map((order) => json.encode(order)).toList();
+    prefs.setStringList('orders', ordersJsonList);
+
   }
 
   void placeOrder(String itemName, String imageName, String productShopName, int productQuantity, String price, String temperature, int sugarCount, int iceCount, String productSize, String cupCount, String cream, String syrup, String topping) {
 
-    print("The order count before adding was ${orders.length}");
     var order = {'productName': itemName, 'productShopName': productShopName, 'productQuantity': productQuantity, 'imageName': imageName, 'price': price, 'temperature': temperature, 'sugarCount': sugarCount, 'iceCount': iceCount, 'productSize': productSize, 'cupCount': cupCount, 'cream': cream, 'syrup': syrup, 'topping': topping};
     orders.add(order);
+    saveOrders();
     update();
-    print("The order count after adding was ${orders.length}");
-    print("The total data added was $orders");
 
   }
 
@@ -46,7 +60,7 @@ class OrderScreenController extends GetxController {
   void removeOrder(int index) {
     if (index >= 0 && index < orders.length) {
       orders.removeAt(index);
-      update(); // Trigger the update to refresh the UI
+      update();
     }
   }
 

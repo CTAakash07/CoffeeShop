@@ -1,11 +1,15 @@
 import 'package:coffee_shop/helperdirectory/approutesdirectory/app_pages.dart';
+import 'package:coffee_shop/screens/orderScreen/order_screen_binding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await _initSharedPreferences();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
@@ -17,6 +21,10 @@ void main() {
   ]);
 
   runApp(const MyApp());
+}
+
+Future<void> _initSharedPreferences() async {
+  await SharedPreferences.getInstance();
 }
 
 class MyApp extends StatelessWidget {
