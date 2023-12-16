@@ -1,5 +1,3 @@
-import 'package:coffee_shop/screens/customDialogScreen/custom_dialog_binding.dart';
-import 'package:coffee_shop/screens/customDialogScreen/custom_dialog_view.dart';
 import 'package:get/get.dart';
 import 'package:coffee_shop/screens/splashScreen/splash_screen_view.dart';
 import '../../screens/customBottomBar/custom_bottom_bar_binding.dart';
@@ -12,8 +10,6 @@ import '../../screens/orderDetailScreen/orderdetail_screen_binding.dart';
 import '../../screens/orderDetailScreen/orderdetail_screen_view.dart';
 import '../../screens/orderScreen/order_screen_binding.dart';
 import '../../screens/orderScreen/order_screen_view.dart';
-import '../../screens/placeOrderScreen/place_order_screen_binding.dart';
-import '../../screens/placeOrderScreen/place_order_screen_view.dart';
 import '../../screens/profileScreen/profile_screen_binding.dart';
 import '../../screens/profileScreen/profile_screen_view.dart';
 import '../../screens/splashScreen/splash_screen_binding.dart';

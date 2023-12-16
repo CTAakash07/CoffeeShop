@@ -1,6 +1,6 @@
-import 'package:coffee_shop/screens/favoriteScreen/favorite_screen_controller.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:coffee_shop/screens/favoriteScreen/favorite_screen_controller.dart';
 
 class FavoriteScreenView extends GetView<FavoriteScreenController> {
    FavoriteScreenView({Key? key}) : super(key: key);

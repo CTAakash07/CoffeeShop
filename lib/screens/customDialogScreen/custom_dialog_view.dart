@@ -1,8 +1,6 @@
-import 'package:coffee_shop/screens/customDialogScreen/custom_dialog_controller.dart';
-import 'package:coffee_shop/screens/homeScreen/home_screen_view.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:flutter/material.dart';
+import 'package:coffee_shop/screens/customDialogScreen/custom_dialog_controller.dart';
 import '../customBottomBar/custom_bottom_bar_view.dart';
 
 class CustomDialogView extends GetView<CustomDialogController> {
@@ -11,7 +9,7 @@ class CustomDialogView extends GetView<CustomDialogController> {
 
   CustomDialogView(
     this.values,
-    this.Price,
+    this.Price, {super.key}
   );
 
   @override

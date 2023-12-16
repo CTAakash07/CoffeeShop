@@ -21,7 +21,7 @@ class PlaceOrderScreenController extends GetxController {
   RxBool toppingsNeeded = false.obs;
   RxBool chocoSyrupNeeded = false.obs;
   RxBool isColdClicked = false.obs;
-  RxBool isCupSizeChannged = false.obs;
+  RxBool isCupSizeChanged = false.obs;
 
   RxList numberofCups = [
     {"values" : "1"},
@@ -58,6 +58,5 @@ class PlaceOrderScreenController extends GetxController {
     {"icons": "assest/images/ingredients_syrup.png", "name" : "ChocoSyrup", "id" : "3" , "value" : false},
     {"icons": "assest/images/ingredients_topping.png", "name" : "Topping", "id" : "4" , "value" : false},
   ].obs;
-
 
 }

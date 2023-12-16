@@ -255,7 +255,8 @@ class OrderScreenView extends GetView<OrderScreenController> {
                             context: context,
                             barrierDismissible: false,
                             builder: (BuildContext context) {
-                              return AlertDialog(
+                              return
+                                AlertDialog(
                                 content: IntrinsicHeight(
                                   child: Column(
                                     crossAxisAlignment:

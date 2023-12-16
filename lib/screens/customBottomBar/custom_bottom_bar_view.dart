@@ -1,10 +1,9 @@
+import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:coffee_shop/screens/customBottomBar/custom_bottom_bar_controller.dart';
 import 'package:coffee_shop/screens/favoriteScreen/favorite_screen_view.dart';
 import 'package:coffee_shop/screens/orderScreen/order_screen_view.dart';
 import 'package:coffee_shop/screens/profileScreen/profile_screen_view.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../homeScreen/home_screen_view.dart';
 
 class CustomAppBarView extends GetView<CustomAppBarController> {
@@ -82,7 +81,7 @@ class CustomAppBarView extends GetView<CustomAppBarController> {
                   width: 30,
                   color: controller.selectedIndex.value == 0
                       ? Colors.black
-                      : Color(0xff909094),
+                      : const Color(0xff909094),
                 ),
               ),
               Tab(
@@ -94,7 +93,7 @@ class CustomAppBarView extends GetView<CustomAppBarController> {
                   width: 30,
                   color: controller.selectedIndex.value == 1
                       ? Colors.black
-                      : Color(0xff909094),
+                      : const Color(0xff909094),
                 ),
               ),
               Tab(
@@ -106,7 +105,7 @@ class CustomAppBarView extends GetView<CustomAppBarController> {
                   width: 30,
                   color: controller.selectedIndex.value == 2
                       ? Colors.black
-                      : Color(0xff909094),
+                      : const Color(0xff909094),
                 ),
               ),
               Tab(
@@ -118,7 +117,7 @@ class CustomAppBarView extends GetView<CustomAppBarController> {
                   width: 30,
                   color: controller.selectedIndex.value == 3
                       ? Colors.black
-                      : Color(0xff909094),
+                      : const Color(0xff909094),
                 ),
               ),
             ],

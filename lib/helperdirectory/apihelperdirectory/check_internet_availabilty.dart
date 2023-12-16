@@ -10,7 +10,7 @@ class CheckConnectivity{
       }else{
         return false;
       }
-    } on SocketException catch (err) {
+    } on SocketException {
       if (kDebugMode) {
       }
       return false;

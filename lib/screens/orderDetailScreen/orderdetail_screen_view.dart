@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../helperdirectory/approutesdirectory/app_pages.dart';
+import 'package:flutter/material.dart';
 import 'package:coffee_shop/screens/orderDetailScreen/orderdetail_screen_controller.dart';
-
 import '../placeOrderScreen/place_order_screen_view.dart';
 
 class OrderDetailScreenView extends GetView<OrderDetailScreenController> {

@@ -1,5 +1,5 @@
-import 'package:coffee_shop/screens/homeScreen/home_screen_controller.dart';
 import 'package:get/get.dart';
+import 'package:coffee_shop/screens/homeScreen/home_screen_controller.dart';
 
 class HomeScreenBinding extends Bindings {
   @override

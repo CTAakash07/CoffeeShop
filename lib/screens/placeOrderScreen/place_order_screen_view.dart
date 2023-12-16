@@ -1,10 +1,6 @@
-import 'dart:ffi';
-
-import 'package:coffee_shop/helperdirectory/approutesdirectory/app_pages.dart';
-import 'package:coffee_shop/screens/customDialogScreen/custom_dialog_controller.dart';
-import 'package:coffee_shop/screens/customDialogScreen/custom_dialog_view.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:coffee_shop/screens/customDialogScreen/custom_dialog_view.dart';
 import 'package:coffee_shop/screens/placeOrderScreen/place_order_screen_controller.dart';
 import '../orderScreen/order_screen_controller.dart';
 
@@ -12,12 +8,10 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
   final double receivedValue;
   final data;
 
-  PlaceOrderScreenView({required this.receivedValue, this.data});
-  // PlaceOrderScreenView({Key? key}) : super(key: key);
+  PlaceOrderScreenView({super.key, required this.receivedValue, this.data});
 
   @override
   var controller = Get.put(PlaceOrderScreenController());
-  // var receivedValue = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +20,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
     controller.productprice.value = controller.sizepriceValue.value.toStringAsFixed(controller.decimalPlaces.value);
     double result = 0.0;
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: SingleChildScrollView(
           child: Column(
@@ -195,7 +189,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                       onTap: () {
                                         if (controller.productQuantity > 1) {
                                           controller.productQuantity -= 1;
-                                          if (controller.isCupSizeChannged == true) {
+                                          if (controller.isCupSizeChanged == true) {
                                             result = controller.sizepriceValue.value - (controller.priceValue.value + controller.sizeindexpriceValue.value);
                                           } else {
                                             result = controller.sizepriceValue.value - controller.priceValue.value;
@@ -235,7 +229,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                   child: InkWell(
                                     onTap: () {
                                       controller.productQuantity += 1;
-                                      if (controller.isCupSizeChannged == true) {
+                                      if (controller.isCupSizeChanged == true) {
                                         result = controller.sizepriceValue.value + (controller.priceValue.value + controller.sizeindexpriceValue.value);
                                       } else {
                                         result = controller.sizepriceValue.value + controller.priceValue.value;
@@ -340,8 +334,8 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                                   controller.productprice.value = controller.sizepriceValue.value.toStringAsFixed(controller.decimalPlaces.value);
                                   controller.selectedSize.value = selected["values"] as String;
                                   controller.productQuantity.value = 1;
-                                  if (controller.isCupSizeChannged == false) {
-                                    controller.isCupSizeChannged.toggle();
+                                  if (controller.isCupSizeChanged == false) {
+                                    controller.isCupSizeChanged.toggle();
                                   }
                                 }
                               },
@@ -372,7 +366,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                       margin:
                           const EdgeInsets.only(left: 10, right: 10, bottom: 5),
                       child: ListView(
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         children: [
                           Container(
@@ -819,7 +813,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                       margin:
                           const EdgeInsets.only(left: 10, right: 10, bottom: 5),
                       child: ListView(
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         children: [
                           Container(
@@ -1452,7 +1446,7 @@ class PlaceOrderScreenView extends GetView<PlaceOrderScreenController> {
                   ],
                 ),
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
             ],
           ),
         ),
