@@ -1,8 +1,14 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.coffee_shop">
+    <!-- Add the following lines -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
-        android:label="coffee_shop"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:label="coffee_shop">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -29,5 +35,15 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <!-- Add the following lines -->
+
+        <meta-data
+            android:name="com.google.android.gms.location.services_enable"
+            android:value="true" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAwPdouU6ShPVXwogtI0dEW9fLN-J7x2GI" />
+
     </application>
 </manifest>

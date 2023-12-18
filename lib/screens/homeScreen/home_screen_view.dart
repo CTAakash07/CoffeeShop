@@ -291,10 +291,10 @@ class HomeScreenView extends GetView<HomeScreenController> {
                 ),
               ),
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Explore nearby",
                   style: TextStyle(
                       fontFamily: "Roboto",
@@ -303,14 +303,19 @@ class HomeScreenView extends GetView<HomeScreenController> {
                       color: Colors.black),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(right: 30),
-                  child: Text(
-                    "See all",
-                    style: TextStyle(
-                      color: Color(0xffd7d3cd),
-                      fontFamily: 'Roboto',
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.w400,
+                  padding: const EdgeInsets.only(right: 30),
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.EXPLORE_NEARYBY);
+                    },
+                    child: const Text(
+                      "See all",
+                      style: TextStyle(
+                        color: Color(0xffd7d3cd),
+                        fontFamily: 'Roboto',
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
                 ),

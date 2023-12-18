@@ -1,7 +1,9 @@
+import 'package:coffee_shop/screens/exploreScreen/explore_detail_screen_binding.dart';
 import 'package:get/get.dart';
 import 'package:coffee_shop/screens/splashScreen/splash_screen_view.dart';
 import '../../screens/customBottomBar/custom_bottom_bar_binding.dart';
 import '../../screens/customBottomBar/custom_bottom_bar_view.dart';
+import '../../screens/exploreScreen/explore_detail_screen_view.dart';
 import '../../screens/favoriteScreen/favorite_screen_binding.dart';
 import '../../screens/favoriteScreen/favorite_screen_view.dart';
 import '../../screens/homeScreen/home_screen_binding.dart';
@@ -55,6 +57,11 @@ class AppPages {
       page: () => OrderDetailScreenView(),
       binding: OrderdetailScreenBinding(),
     ),
+    GetPage(
+        name: Routes.EXPLORE_NEARYBY,
+        page: () => ExploreDetailScreenView(),
+        binding: ExploreDetailsScreenBindings(),
+    ),
   ];
 }
 
@@ -69,5 +76,6 @@ abstract class Routes {
   static const PROFILE_SCREEN = '/profile_screen';
   static const PLACE_ORDER_SCREEN = '/place_order_screen';
   static const DIALOG_WIDGET = '/dialog_widget';
+  static const EXPLORE_NEARYBY = '/explore_nearby';
 
 }

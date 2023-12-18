@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() async {
 
@@ -27,12 +28,19 @@ Future<void> _initSharedPreferences() async {
   await SharedPreferences.getInstance();
 }
 
+// Function to request location permission
+Future<void> requestLocationPermission() async {
+  var status = await Permission.location.request();
+  print("Location Permission Status: $status");
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    requestLocationPermission();
     return GetMaterialApp(
       title: "Coffee Shop",
       initialRoute: AppPages.INITIAL,
