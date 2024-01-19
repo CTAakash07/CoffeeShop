@@ -1,3 +1,5 @@
+import 'package:coffee_shop/screens/audioScreen/audioScreenBinding/audio_screen_binding.dart';
+import 'package:coffee_shop/screens/audioScreen/audioScreenView/audio_screen_view.dart';
 import 'package:coffee_shop/screens/exploreScreen/explore_detail_screen_binding.dart';
 import 'package:get/get.dart';
 import 'package:coffee_shop/screens/splashScreen/splash_screen_view.dart';
@@ -48,6 +50,11 @@ class AppPages {
       binding: FavoriteScreenBinding(),
     ),
     GetPage(
+      name: Routes.AUDIO_SCREEN,
+      page: () => AudioScreenView(),
+      binding: AudioScreenBinding(),
+    ),
+    GetPage(
       name: Routes.PROFILE_SCREEN,
       page: () => ProfileScreenView(),
       binding: ProfileScreenBinding(),
@@ -73,6 +80,7 @@ abstract class Routes {
   static const ORDER_SCREEN = '/order_screen';
   static const ORDER_DETAIL_SCREEN = '/orderdetail_screen';
   static const FAVORITE_SCREEN = '/favorite_screen';
+  static const AUDIO_SCREEN = '/audio_screen';
   static const PROFILE_SCREEN = '/profile_screen';
   static const PLACE_ORDER_SCREEN = '/place_order_screen';
   static const DIALOG_WIDGET = '/dialog_widget';

@@ -10,7 +10,7 @@ class CustomAppBarController extends GetxController with GetSingleTickerProvider
 
   @override
   void onInit() async {
-    tabController = TabController(vsync: this, length: 4);
+    tabController = TabController(vsync: this, length: 5);
     checkInternetConnection();
     super.onInit();
 

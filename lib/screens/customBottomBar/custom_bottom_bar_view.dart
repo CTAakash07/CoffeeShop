@@ -4,6 +4,7 @@ import 'package:coffee_shop/screens/customBottomBar/custom_bottom_bar_controller
 import 'package:coffee_shop/screens/favoriteScreen/favorite_screen_view.dart';
 import 'package:coffee_shop/screens/orderScreen/order_screen_view.dart';
 import 'package:coffee_shop/screens/profileScreen/profile_screen_view.dart';
+import '../audioScreen/audioScreenView/audio_screen_view.dart';
 import '../homeScreen/home_screen_view.dart';
 
 class CustomAppBarView extends GetView<CustomAppBarController> {
@@ -29,6 +30,7 @@ class CustomAppBarView extends GetView<CustomAppBarController> {
                   HomeScreenView(),
                   OrderScreenView(),
                   FavoriteScreenView(),
+                  AudioScreenView(),
                   ProfileScreenView(),
                 ],
               ),
@@ -100,6 +102,18 @@ class CustomAppBarView extends GetView<CustomAppBarController> {
                 text: "Favorites",
                 icon: Image.asset(
                   'assest/images/bottombar_heart.png',
+                  fit: BoxFit.scaleDown,
+                  height: 30,
+                  width: 30,
+                  color: controller.selectedIndex.value == 2
+                      ? Colors.black
+                      : const Color(0xff909094),
+                ),
+              ),
+              Tab(
+                text: "Audio",
+                icon: Image.asset(
+                  'assest/images/bottombar_audio.png',
                   fit: BoxFit.scaleDown,
                   height: 30,
                   width: 30,
